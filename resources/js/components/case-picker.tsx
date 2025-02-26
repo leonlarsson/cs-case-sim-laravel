@@ -11,12 +11,14 @@ export const CasePicker = ({ availableCases }: { availableCases: CasePickerCase[
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [pending, startTransition] = useTransition();
     const { buttonClickAlternativeSound, caseSelectSound } = useAudio();
+    const selectedCaseParam = new URLSearchParams(window.location.search).get('case');
+    const selectedCaseId = availableCases.find((x) => x.id === selectedCaseParam)?.id;
 
     const featuredCases: CasePickerCase[] = [availableCases.find((x) => x.id === 'crate-7003')!];
 
     // Select the case based on the URL parameter
     // If the case is not found, select the Kilowatt case, but fall back to index 0
-    const selectedCase = availableCases.find((x) => x.id === 'crate-7003') ?? availableCases[0];
+    const selectedCase = availableCases.find((x) => x.id === selectedCaseId) ?? availableCases[0];
 
     // Load favorite cases from localStorage on mount
     useEffect(() => {
