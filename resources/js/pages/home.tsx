@@ -44,7 +44,12 @@ export default function Welcome() {
                 <div className="mx-2 mt-2 flex flex-col-reverse justify-between gap-2 min-[800px]:flex-row">
                     <CasePicker availableCases={casesMetadata} />
 
-                    <Button variant="secondary-darker" href="/unboxed" className="flex items-center justify-center py-0 text-center backdrop-blur-md">
+                    <Button
+                        variant="secondary-darker"
+                        href="/unboxed"
+                        prefetch
+                        className="flex items-center justify-center py-0 text-center backdrop-blur-md"
+                    >
                         Global Unbox History
                     </Button>
                 </div>

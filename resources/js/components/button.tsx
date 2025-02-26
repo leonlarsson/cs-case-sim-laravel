@@ -6,13 +6,24 @@ type Props = {
     className?: string;
     disabled?: boolean;
     href?: string;
+    prefetch?: boolean;
     openInNewTab?: boolean;
     playSoundOnClick?: boolean;
     onClick?: () => void;
     children: React.ReactNode;
 };
 
-export const Button = ({ variant, className: extraClassNames, disabled, href, openInNewTab, playSoundOnClick = true, onClick, children }: Props) => {
+export const Button = ({
+    variant,
+    className: extraClassNames,
+    disabled,
+    href,
+    prefetch,
+    openInNewTab,
+    playSoundOnClick = true,
+    onClick,
+    children,
+}: Props) => {
     const className = {
         className: `select-none cursor-pointer rounded p-3 text-lg font-semibold transition-colors duration-[40ms] disabled:bg-neutral-500 ${extraClassNames} ${
             variant === 'primary' ? 'bg-[#048b59] hover:bg-[#15b869]' : ''
@@ -26,6 +37,7 @@ export const Button = ({ variant, className: extraClassNames, disabled, href, op
     return href ? (
         <Link
             href={href}
+            prefetch={prefetch}
             target={openInNewTab ? '_blank' : undefined}
             className={className.className}
             onMouseEnter={() => buttonHoverSound.play()}
