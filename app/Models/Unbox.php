@@ -9,6 +9,10 @@ class Unbox extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'unboxer_id'
+    ];
+
     protected $casts = [
         'is_stat_trak' => 'boolean',
     ];
