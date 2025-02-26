@@ -1,0 +1,24 @@
+[
+  {
+    "id": "crate-4668",
+    "name": "X-Ray P250 Package",
+    "description": "This package contains a single custom painted P250 showing its internals with an X-Ray. P250 is a low-recoil firearm with a high rate of fire, which is a relatively inexpensive choice against armored opponents.",
+    "type": null,
+    "first_sale_date": "2019/10/02",
+    "contains": [
+      {
+        "id": "skin-2359796",
+        "name": "P250 | X-Ray",
+        "rarity": {
+          "id": "rarity_mythical_weapon",
+          "name": "Restricted",
+          "color": "#8847ff"
+        },
+        "paint_index": "125",
+        "image": "https://raw.githubusercontent.com/ByMykel/CSGO-API/efe25483a04a03414dea9c61d4b0e958a373cdfd/public/images/econ/default_generated/weapon_p250_cu_xray_p250_light.png"
+      }
+    ],
+    "contains_rare": [],
+    "image": "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/weapon_cases/crate_xray_p250.a25f07aef78944efdd2ad4bca2a009749b3346e8.png"
+  }
+]
