@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\GameCase;
+use App\Models\GameItem;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -7,11 +9,22 @@ Route::get('/', function () {
     return Inertia::render('home');
 })->name('home');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
+Route::group(['prefix' => 'api'], function () {
+    Route::get('cases', function () {
+        $cases = GameCase::all();
+        return response()->json($cases);
+    });
 
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+    Route::get('cases/{case}', function (GameCase $case) {
+        return response()->json($case);
+    });
+
+    Route::get('items', function () {
+        $items = GameItem::all();
+        return response()->json($items);
+    });
+
+    Route::get('items/{item}', function (GameItem $item) {
+        return response()->json($item);
+    });
+});
