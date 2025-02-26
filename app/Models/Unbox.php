@@ -9,6 +9,10 @@ class Unbox extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'is_stat_trak' => 'boolean',
+    ];
+
     public function case()
     {
         return $this->belongsTo(GameCase::class);
