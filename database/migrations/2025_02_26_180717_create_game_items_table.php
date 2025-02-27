@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('game_items', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('image');
+            $table->text('description')->nullable();
+            $table->text('image');
             $table->string('rarity');
             $table->string('phase')->nullable();
             $table->timestamps();
