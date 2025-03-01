@@ -28,16 +28,18 @@ type PageProps = {
             name: string;
         };
     }[];
-    totalUnboxes: number;
-    totalUnboxesCoverts: number;
-    totalUnboxesLast24Hours: number;
+    stats: {
+        totalUnboxes: number;
+        totalUnboxesCoverts: number;
+        totalUnboxesLast24Hours: number;
+    };
 };
 
-export default ({ unboxes, totalUnboxes, totalUnboxesCoverts, totalUnboxesLast24Hours }: PageProps) => {
+export default ({ unboxes, stats }: PageProps) => {
     const onlyCoverts = new URLSearchParams(window.location.search).get('onlyCoverts') === 'true';
     const onlyPersonal = new URLSearchParams(window.location.search).get('onlyPersonal') === 'true';
 
-    const totalUnboxed = onlyCoverts ? totalUnboxesCoverts : totalUnboxes;
+    const totalUnboxed = onlyCoverts ? stats.totalUnboxesCoverts : stats.totalUnboxes;
 
     // usePoll(5000);
 
@@ -70,8 +72,8 @@ export default ({ unboxes, totalUnboxes, totalUnboxesCoverts, totalUnboxesLast24
                         <br />
 
                         <span title="All items, regardless of rarity.">
-                            <span className="font-medium tracking-wide">{totalUnboxesLast24Hours.toLocaleString('en')}</span> items unboxed in the
-                            last 24 hours.
+                            <span className="font-medium tracking-wide">{stats.totalUnboxesLast24Hours.toLocaleString('en')}</span> items unboxed in
+                            the last 24 hours.
                         </span>
                     </span>
 
