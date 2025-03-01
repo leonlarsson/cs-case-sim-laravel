@@ -73,13 +73,12 @@ class CaseItemDropRatesSeeder extends Seeder
                         'case_id'    => $caseId,
                         'item_id'    => $caseItem['id'],
                         'item_drop_rate'  => $caseItemDropRate,
-                        'created_at' => now(),
-                        'updated_at' => now(),
                     ];
                 }
             }
         }
 
-        CaseItemDropRate::insert($insertData);
+        // Insert case item drop rate, or update item_drop_rate if it already exists
+        CaseItemDropRate::upsert($insertData, ['case_id', 'item_id'], ['item_drop_rate']);
     }
 }

@@ -40,11 +40,10 @@ class GameCaseSeeder extends Seeder
                 'name'        => $case['name'],
                 'image'       => $case['image'],
                 'description' => $case['description'],
-                'created_at'  => now(),
-                'updated_at'  => now(),
             ];
         })->toArray();
 
-        GameCase::insertOrIgnore($caseData);
+        // Insert case, or update its name, description, and image if it already exists
+        GameCase::upsert($caseData, ['id'], ['name', 'description', 'image']);
     }
 }

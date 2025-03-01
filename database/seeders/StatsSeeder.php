@@ -12,7 +12,7 @@ class StatsSeeder extends Seeder
      */
     public function run(): void
     {
-        Stats::insert([
+        Stats::insertOrIgnore([
             [
                 'name' => 'total_unboxes_all',
                 'value' => 0,

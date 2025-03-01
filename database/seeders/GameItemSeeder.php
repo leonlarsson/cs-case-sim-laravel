@@ -42,11 +42,10 @@ class GameItemSeeder extends Seeder
                 'image'       => $item['image'],
                 'rarity'      => $item['rarity']['name'],
                 'phase'       => $item['phase'] ?? null,
-                'created_at'  => now(),
-                'updated_at'  => now(),
             ];
         })->toArray();
 
-        GameItem::insertOrIgnore($itemData);
+        // Insert item, or update its name, description, image, rarity, and phase if it already exists
+        GameItem::upsert($itemData, ['id'], ['name', 'description', 'image', 'rarity', 'phase']);
     }
 }
