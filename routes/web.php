@@ -67,22 +67,26 @@ Route::group(['prefix' => 'api'], function () {
         });
 
         Route::get('from-case/{caseId}', function (string $caseId) {
-            $item = CaseItemDropRate::getRandomItemByDropRate($caseId);
+            $caseItem = CaseItemDropRate::getRandomItemByDropRate($caseId);
 
-            if (!$item) {
+            if (!$caseItem) {
                 return response()->json(['error' => 'No item could be retrieved.'], 404);
             }
 
-            $itemIsStatTrak = $item->item->rarity !== "Extraordinary" && $item->case->type !== "Souvenir" && fake()->boolean(10);
+            $itemIsStatTrak = $caseItem->item->rarity !== "Extraordinary" && $caseItem->case->type !== "Souvenir" && fake()->boolean(10);
 
             $unbox = new Unbox();
-            $unbox->case_id = $item->case_id;
-            $unbox->item_id = $item->item_id;
+            $unbox->case_id = $caseItem->case_id;
+            $unbox->item_id = $caseItem->item_id;
             $unbox->is_stat_trak = $itemIsStatTrak;
             $unbox->unboxer_id = fake()->uuid();
             $unbox->save();
 
             // Increment Stats model
+            Stats::where('name', 'total_unboxes_all')->increment('value');
+            if ($caseItem->item->rarity === 'Covert' || $caseItem->item->rarity === 'Extraordinary') {
+                Stats::where('name', 'total_unboxes_coverts')->increment('value');
+            }
 
             return response()->json($unbox);
         });
