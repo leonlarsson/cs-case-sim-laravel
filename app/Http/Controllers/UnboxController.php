@@ -6,6 +6,7 @@ use App\Models\CaseItemDropRate;
 use App\Models\Stats;
 use App\Models\Unbox;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class UnboxController extends Controller
@@ -51,13 +52,19 @@ class UnboxController extends Controller
         $unbox->item_id = $caseItem->item_id;
         $unbox->is_stat_trak = $itemIsStatTrak;
         $unbox->unboxer_id = fake()->uuid();
+        $unbox->setRelation('case', $caseItem->case);
+        $unbox->setRelation('item', $caseItem->item);
         $unbox->save();
 
         // Increment Stats model
-        Stats::where('name', 'total_unboxes_all')->increment('value');
-        if ($caseItem->item->rarity === 'Covert' || $caseItem->item->rarity === 'Extraordinary') {
-            Stats::where('name', 'total_unboxes_coverts')->increment('value');
-        }
+        dispatch(function () use ($caseItem) {
+            DB::transaction(function () use ($caseItem) {
+                Stats::where('name', 'total_unboxes_all')->increment('value');
+                if ($caseItem->item->rarity === 'Covert' || $caseItem->item->rarity === 'Extraordinary') {
+                    Stats::where('name', 'total_unboxes_coverts')->increment('value');
+                }
+            });
+        })->afterResponse();
 
         return response()->json($unbox);
     }
