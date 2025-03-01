@@ -35,16 +35,22 @@ export const Button = ({
     const { buttonClickSound, buttonHoverSound } = useAudio();
 
     return href ? (
-        <Link
-            href={href}
-            prefetch={prefetch}
-            target={openInNewTab ? '_blank' : undefined}
-            className={className.className}
-            onMouseEnter={() => buttonHoverSound.play()}
-            onClick={() => buttonClickSound.play()}
-        >
-            {children}
-        </Link>
+        !href.startsWith('http') ? (
+            <Link
+                href={href}
+                prefetch={prefetch}
+                target={openInNewTab ? '_blank' : undefined}
+                className={className.className}
+                onMouseEnter={() => buttonHoverSound.play()}
+                onClick={() => buttonClickSound.play()}
+            >
+                {children}
+            </Link>
+        ) : (
+            <a href={href} className={className.className} onMouseEnter={() => buttonHoverSound.play()} onClick={() => buttonClickSound.play()}>
+                {children}
+            </a>
+        )
     ) : (
         <button
             className={className.className}
