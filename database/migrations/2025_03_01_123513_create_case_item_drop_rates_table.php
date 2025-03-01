@@ -20,6 +20,10 @@ return new class extends Migration
 
             $table->foreign('case_id')->references('id')->on('game_cases')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('game_items')->onDelete('cascade');
+
+            $table->index('case_id');
+
+            $table->unique(['case_id', 'item_id']);
         });
     }
 
