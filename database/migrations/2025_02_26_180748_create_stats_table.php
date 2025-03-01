@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stats', function (Blueprint $table) {
-            $table->enum('name', ['total_unboxes_all', 'total_unboxes_coverts'])->primary();
+            $table->id();
+            $table->string('name')->unique();
             $table->integer('value')->default(0);
         });
     }
