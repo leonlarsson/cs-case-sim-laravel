@@ -2,6 +2,7 @@ import { AboutButtonWithModal } from '@/components/about-button-with-modal';
 import { Button } from '@/components/button';
 import CaseItems from '@/components/case-items';
 import { CasePicker } from '@/components/case-picker';
+import { UnlockContainerButton } from '@/components/unlock-container-button';
 import casesLocal from '@/data/cases.json';
 import customCasesLocal from '@/data/customCases.json';
 import souvenirCasesLocal from '@/data/souvenir.json';
@@ -102,15 +103,15 @@ export default function Welcome() {
                             </span>
                         </span>
 
-                        {/* <div className="flex flex-wrap items-center gap-2">
-                        <UnlockButton caseId={selectedCase.id} />
-                        
-                        <div className="mx-2 hidden h-16 w-px bg-white/50 md:inline" />
-                        
-                        <Button variant="secondary" className="hidden cursor-not-allowed md:inline" playSoundOnClick={false}>
-                        CLOSE
-                        </Button>
-                        </div> */}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <UnlockContainerButton caseId={selectedCase.id} />
+
+                            <div className="mx-2 hidden h-16 w-px bg-white/50 md:inline" />
+
+                            <Button variant="secondary" className="hidden !cursor-not-allowed md:inline" playSoundOnClick={false}>
+                                CLOSE
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </main>

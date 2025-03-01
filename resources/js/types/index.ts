@@ -84,3 +84,31 @@ export type ItemGrade = 'Consumer Grade' | 'Industrial Grade' | 'Mil-Spec Grade'
 
 /** CasePickerCase is the APICase data being passed to the case picker */
 export type CasePickerCase = Pick<APICase, 'id' | 'name' | 'description' | 'image' | 'first_sale_date'>;
+
+export type UnboxWithRelations = {
+    id: number;
+    case_id: string;
+    item_id: string;
+    is_stat_trak: boolean;
+    updated_at: string;
+    created_at: string;
+    case: {
+        id: string;
+        type: string;
+        name: string;
+        description: string;
+        image: string;
+        created_at: string;
+        updated_at: string;
+    };
+    item: {
+        id: string;
+        name: string;
+        description: string;
+        image: string;
+        rarity: string;
+        phase: string | null;
+        created_at: string;
+        updated_at: string;
+    };
+};
