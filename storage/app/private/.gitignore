@@ -1,2 +1,4 @@
 *
 !.gitignore
+!cases.json
+!souvenir-cases.json

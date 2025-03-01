@@ -28,7 +28,7 @@ class MigrateFreshAndSeed extends Command
         if ($this->confirm('This will delete all data in the database. Do you wish to continue?')) {
             $this->call('migrate:fresh');
             $this->call('db:seed');
-            $this->call('db:seed', ['--class' => 'UnboxSeeder']);
+            // $this->call('db:seed', ['--class' => 'UnboxSeeder']);
 
             $this->info('Database has been refreshed and seeded.');
         }

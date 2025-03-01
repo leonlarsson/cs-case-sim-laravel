@@ -15,11 +15,11 @@ class StatsSeeder extends Seeder
         Stats::insert([
             [
                 'name' => 'total_unboxes_all',
-                'value' => 53550979,
+                'value' => 0,
             ],
             [
                 'name' => 'total_unboxes_coverts',
-                'value' => 448059,
+                'value' => 0,
             ],
         ]);
     }
