@@ -18,7 +18,7 @@ export default () => {
             router.visit(url.href, {
                 showProgress: true,
                 preserveState: true,
-                only: ['unboxes'],
+                only: ['unboxes', 'stats'],
             });
         });
     };

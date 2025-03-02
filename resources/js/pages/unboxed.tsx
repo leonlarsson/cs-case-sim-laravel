@@ -31,11 +31,11 @@ type PageProps = {
     stats: {
         totalUnboxes: number;
         totalUnboxesCoverts: number;
-        totalUnboxesLast24Hours: number;
     };
+    totalUnboxesLast24Hours: number;
 };
 
-export default ({ unboxes, stats }: PageProps) => {
+export default ({ unboxes, stats, totalUnboxesLast24Hours }: PageProps) => {
     const onlyCoverts = new URLSearchParams(window.location.search).get('onlyCoverts') === 'true';
     const onlyPersonal = new URLSearchParams(window.location.search).get('onlyPersonal') === 'true';
 
@@ -72,8 +72,8 @@ export default ({ unboxes, stats }: PageProps) => {
                         <br />
 
                         <span title="All items, regardless of rarity.">
-                            <span className="font-medium tracking-wide">{stats.totalUnboxesLast24Hours.toLocaleString('en')}</span> items unboxed in
-                            the last 24 hours.
+                            <span className="font-medium tracking-wide">{totalUnboxesLast24Hours.toLocaleString('en')}</span> items unboxed in the
+                            last 24 hours.
                         </span>
                     </span>
 
