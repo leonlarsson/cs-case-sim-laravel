@@ -64,7 +64,7 @@ class UnboxController extends Controller
             return response()->json(['error' => 'No item could be retrieved.'], 404);
         }
 
-        $itemIsStatTrak = $caseItem->item->rarity !== "Extraordinary" && $caseItem->case->type !== "Souvenir" && fake()->boolean(10);
+        $itemIsStatTrak = $caseItem->item->rarity !== "Extraordinary" && $caseItem->case->type !== "Souvenir" && mt_rand(1, 100) <= 10;
 
         $unbox = new Unbox();
         $unbox->case_id = $caseItem->case_id;
