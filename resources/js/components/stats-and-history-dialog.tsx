@@ -15,8 +15,10 @@ export const StatsAndHistoryDialog = ({ historyDialogRef }: Props) => {
 
     return (
         <dialog
-            className="mx-auto w-full max-w-lg border-[1px] border-white/30 bg-[#2d2d2d]/50 text-xl text-white backdrop-blur-xl backdrop:bg-black/30 backdrop:backdrop-blur-sm"
             ref={historyDialogRef}
+            className="mx-auto w-full max-w-lg border-[1px] border-white/30 text-xl text-white backdrop-blur-xl backdrop:bg-black/30 backdrop:backdrop-blur-sm"
+            // bg-[#2d2d2d]/50 (https://github.com/parcel-bundler/lightningcss/issues/899)
+            style={{ backgroundColor: 'oklab(29.7163% -44.7035e-9 2.98023e-8/.5)' }}
         >
             <div className="flex flex-col">
                 <span className="bg-[#262626]/70 p-3 text-3xl font-semibold text-neutral-400">Stats and history</span>
