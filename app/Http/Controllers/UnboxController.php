@@ -57,6 +57,7 @@ class UnboxController extends Controller
 
     public function unboxItemFromCase(Request $request, string $caseId)
     {
+        $startTime = microtime(true);
         $caseItem = CaseItemDropRate::getRandomItemByDropRate($caseId);
         $unboxerId = $request->cookie('unboxerId');
 
@@ -85,6 +86,9 @@ class UnboxController extends Controller
             });
         })->afterResponse();
 
-        return response()->json($unbox);
+        $endTime = microtime(true);
+        $executionTime = ($endTime - $startTime) * 1000; //in ms
+
+        return response()->json($executionTime);
     }
 }
