@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\UnboxController;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -33,8 +32,8 @@ Route::group(['prefix' => 'api'], function () {
         ]);
     });
 
-    Route::get('/opcache', function (Request $request) {
-        $password = $request->query('password');
+    Route::get('/opcache', function () {
+        $password = request()->query('password');
         if ($password !== env('SECRET_PASSWORD')) {
             return response()->json([
                 'message' => 'Unauthorized',
