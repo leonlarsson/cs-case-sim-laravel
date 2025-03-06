@@ -31,15 +31,4 @@ Route::group(['prefix' => 'api'], function () {
             'message' => 'Hello World',
         ]);
     });
-
-    Route::get('/opcache', function () {
-        $password = request()->query('password');
-        if ($password !== env('SECRET_PASSWORD')) {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
-        }
-
-        phpinfo();
-    });
 });
