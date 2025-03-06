@@ -39,8 +39,7 @@ return [
     |
     */
 
-    // 'debug' => (bool) env('APP_DEBUG', false),
-    'debug' => $_GET['password'] === env('SECRET_PASSWORD', 'secret'),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
