@@ -1,11 +1,7 @@
 <?php
 
-use App\Http\Controllers\GameCaseController;
-use App\Http\Controllers\GameItemController;
 use App\Http\Controllers\UnboxController;
-use App\Models\CaseItemDropRate;
-use App\Models\Stats;
-use App\Models\Unbox;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -35,5 +31,16 @@ Route::group(['prefix' => 'api'], function () {
         return response()->json([
             'message' => 'Hello World',
         ]);
+    });
+
+    Route::get('/opcache', function (Request $request) {
+        $password = $request->query('password');
+        if ($password !== env('SECRET_PASSWORD')) {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        phpinfo();
     });
 });
