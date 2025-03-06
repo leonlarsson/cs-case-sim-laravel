@@ -30,4 +30,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::group(['prefix' => 'unboxes'], function () {
         Route::get('new-unbox-from-case/{caseId}', [UnboxController::class, 'unboxItemFromCase'])->name('unboxItemFromCase');
     });
+
+    Route::get('test', function () {
+        return response()->json([
+            'message' => 'Hello World',
+        ]);
+    });
 });
