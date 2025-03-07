@@ -77,7 +77,7 @@ autostart=true
 autorestart=true
 stopasgroup=true
 killasgroup=true
-numprocs=4
+numprocs=12
 startsecs=0
 stopwaitsecs=3600
 stdout_logfile=/var/log/worker-laravel.log
@@ -171,7 +171,7 @@ http {
         ) else ()
 
         location ~ \.php$ {
-            fastcgi_buffer_size 16k;
+            fastcgi_buffer_size 8k;
             fastcgi_pass 127.0.0.1:9000;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
             include $!{nginx}/conf/fastcgi_params;
